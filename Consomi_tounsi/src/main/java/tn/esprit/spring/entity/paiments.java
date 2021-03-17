@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class paiments implements Serializable {
@@ -21,6 +22,11 @@ public class paiments implements Serializable {
 	 private Long id;
 	@Column (name="client_id")
 	 private String client_id;
+	
+	@OneToOne(mappedBy="Paiments")
+	private orders orders;
+	
+	
 	public Long getId() {
 		return id;
 	}

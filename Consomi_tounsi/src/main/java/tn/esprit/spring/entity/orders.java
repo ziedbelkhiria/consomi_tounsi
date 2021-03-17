@@ -17,6 +17,9 @@ private static final long serialVersionUID = 1L;
 	@Temporal(TemporalType.DATE)
 	private Date order_date;
 	
+	@OneToOne
+	private paiments Paiments;
+	
 	public orders(Integer orders_id, Date birth_date) {
 		super();
 		Orders_id = orders_id;
