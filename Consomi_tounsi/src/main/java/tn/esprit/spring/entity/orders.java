@@ -20,6 +20,16 @@ private static final long serialVersionUID = 1L;
 	@OneToOne
 	private paiments Paiments;
 	
+	@ManyToOne
+	delivery delivery;
+	
+	@ManyToOne
+	customer customer;
+	
+	@ManyToOne
+	Product Product;
+	
+	
 	public orders(Integer orders_id, Date birth_date) {
 		super();
 		Orders_id = orders_id;

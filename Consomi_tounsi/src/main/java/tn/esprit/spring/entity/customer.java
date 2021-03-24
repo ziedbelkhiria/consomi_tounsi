@@ -2,9 +2,8 @@ package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +25,12 @@ public class customer implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date birth_date;
 	
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="customer")
+	private Set<orders> orders;
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="customer")
+	private Set<donations> donations;
 
 	public customer(Integer id, String name, String lastname, String adress, long tel, Date birth_date) {
 		super();

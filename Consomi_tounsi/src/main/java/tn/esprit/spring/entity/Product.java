@@ -1,13 +1,16 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,19 @@ public class Product implements Serializable {
 	private String product_category ;
 	private double product_price ;
 	
+	
+	
+	public Product(Long id, String product_type, String product_name, String product_category, double product_price) {
+		super();
+		this.id = id;
+		this.product_type = product_type;
+		this.product_name = product_name;
+		this.product_category = product_category;
+		this.product_price = product_price;
+	}
+	public Product(long id, String product_tupe, String product_name, String product_category) {
+		// TODO Auto-generated constructor stub
+	}
 	@ManyToOne
 	Category category;
 	
@@ -33,6 +49,9 @@ public class Product implements Serializable {
 
 	@ManyToOne
 	Provider provider;
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="Product")
+	private Set<orders> orders;
 	
 	
 	public Long getId() {

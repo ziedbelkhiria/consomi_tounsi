@@ -1,12 +1,15 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +28,11 @@ public class delivery_man implements Serializable  {
 	private String name ;
 	@Column(name="deliveryman_lastname")
 	private String lastname ;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="delivery_man")
+	private Set<delivery> delivery;
+	
+	
 	public delivery_man(int id, String name, String lastname) {
 		super();
 		this.id = id;
