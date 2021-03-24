@@ -11,7 +11,7 @@ import tn.esprit.spring.entity.Stocks;
 
 
 @Repository
-public interface StockRepository extends JpaRepository<Stocks, Integer> {
-	Optional<Stocks> findById(long parseLong);
+public interface StockRepository extends JpaRepository<Stocks, Long> {
+	Optional<Stocks> findById(Long parseLong);
 
 }
