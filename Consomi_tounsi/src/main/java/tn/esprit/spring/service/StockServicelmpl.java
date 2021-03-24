@@ -1,6 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,9 +28,9 @@ public class StockServicelmpl implements stockService {
 	}
 
 	@Override
-	public void deleteStocks(int id) {
-		// TODO Auto-generated method stub
-		Stockrep.deleteById(id);
+	public void deleteStocks(Long id) {
+		 Stockrep.deleteById(id);
+		
 	}
 
 	@Override
@@ -38,11 +39,15 @@ public class StockServicelmpl implements stockService {
 		return Stockrep.save(S);
 	}
 
+
+
 	@Override
-	public Stocks retrieveProducts(String StocksId) {
-		// TODO Auto-generated method stub
-		return Stockrep.findById(Long.parseLong(StocksId)).orElse(null);
+	public Optional<Stocks> retrieveStocks(Long StocksId) {
+		
+		return Stockrep.findById(StocksId);
 	}
+
+	
 	
 
 }
