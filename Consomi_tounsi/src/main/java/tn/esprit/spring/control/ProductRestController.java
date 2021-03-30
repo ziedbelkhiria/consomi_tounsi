@@ -1,7 +1,7 @@
 package tn.esprit.spring.control;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.service.ProductService;
@@ -43,26 +44,45 @@ public class ProductRestController {
 
     @PostMapping("/add")
     public ResponseEntity<Product> addProduit(@RequestBody Product product)  {
-    Product P=	productService.addProduct(product);
-    return new ResponseEntity<>( P,  HttpStatus.CREATED);
+    	String codeABarre = String.valueOf(product.getCode_a_barre());
+    	if (codeABarre.startsWith("619")) {
+    		product =	productService.addProduct(product);			
+		} else {
+			return new ResponseEntity<>( product,  HttpStatus.FORBIDDEN);
+		}
+    
+    return new ResponseEntity<>( product,  HttpStatus.CREATED);
     
     }
      
-    @PutMapping("/produits")
-    public void updateProduit(@RequestBody Product product) {
+    @PutMapping("/update")
+    public ResponseEntity<Product> updateProduit(@RequestBody Product product) {
          if (product.getId() != null) {
-             productService.updateProduct(product);
+           product =  productService.updateProduct(product);
+            
         }
+         return new ResponseEntity<>(product, HttpStatus.OK);
          
     }
-    @GetMapping("/produits/{id}")
-    public Optional<Product> getProduit(@PathVariable Long id) {
-        return  productService.retrieveProduct(id);
+    @GetMapping("/Product/{id}")
+    public ResponseEntity<Product> getProduit(@PathVariable Long id) {
+    	Product P = productService.retrieveProduct(id);
+    	return new ResponseEntity<>( P, HttpStatus.OK);	
+        
      }
-    @DeleteMapping("/produits/{id}")
+    
+    
+    @DeleteMapping("/delete/{id}")
     public void deleteProduit(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 	
+    
+    @GetMapping("/Product/find")
+    public ResponseEntity<List<Product>> findProductByNameAndType(@RequestParam String q )
+    {
+    	List<Product> list =productService.findProductByNameAndType(q);
+    	return new ResponseEntity<>( list, HttpStatus.OK);
+    }
 
 }

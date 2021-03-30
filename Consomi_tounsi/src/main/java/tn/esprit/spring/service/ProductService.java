@@ -1,7 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import tn.esprit.spring.entity.Product;
 
@@ -15,7 +15,9 @@ public interface ProductService {
 	
 	Product updateProduct(Product P);
 	
-	Optional<Product> retrieveProduct(Long idProduct);
+	Product retrieveProduct(Long idProduct);
+
+	List<Product> findProductByNameAndType(String q);
 	
 
 }
