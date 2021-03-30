@@ -32,6 +32,11 @@ public class Category implements Serializable {
 	@Column(name="Category_type")
 	private String type;
 	
+	
+	
+	public Category() {
+		super();
+	}
 	public Category(long id, String name, String capacity, String type){
 		super();
 	}
