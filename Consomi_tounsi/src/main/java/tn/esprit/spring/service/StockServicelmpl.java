@@ -1,14 +1,15 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Stocks;
 
 import tn.esprit.spring.repository.StockRepository;
-
+@Service
 public class StockServicelmpl implements stockService {
 	
 @Autowired
@@ -42,9 +43,9 @@ public class StockServicelmpl implements stockService {
 
 
 	@Override
-	public Optional<Stocks> retrieveStocks(Long StocksId) {
+	public Stocks retrieveStocks(Long StocksId) {
 		
-		return Stockrep.findById(StocksId);
+		return Stockrep.findStockByid(StocksId);
 	}
 
 	

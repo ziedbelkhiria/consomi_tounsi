@@ -1,9 +1,12 @@
 package tn.esprit.spring.control;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,45 +14,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RestController;
+
 
 import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.service.stockService;
 
-@RestController
-@RequestMapping("/api")
+@Controller
+@RequestMapping("/API")
 public class StockRestController {
 	@Autowired
-	private stockService stockService;
+	public stockService stockService;
 
-	@RequestMapping("/")
-    public String home() {
-        return "Hello World!";
-    }
 	
 	@GetMapping("/Stocks")
-    public List<Stocks> getAllStocks()  {
-        return (List<Stocks>) stockService.retrieveAllStocks();
+    public ResponseEntity<List<Stocks>>  getAllStocks()  {
+		List<Stocks> S = stockService.retrieveAllStocks();
+		return new ResponseEntity<>( S, HttpStatus.OK);
     }
+	
 
-    @PostMapping("/Stocks")
-    void addStocks(@RequestBody Stocks  stocks )  {
-    	stockService.addStocks(stocks );
+
+    @PostMapping("/add")
+    public ResponseEntity<Stocks> addStocks(@RequestBody Stocks  stocks )  {
+    	Stocks S= stockService.addStocks(stocks);
+    	return new ResponseEntity<>( S,  HttpStatus.CREATED);
     }
+    
      
-    @PutMapping("/Stocks")
-    public void updateStocks(@RequestBody Stocks Stocks) {
+    @PutMapping("/update")
+    public ResponseEntity<Stocks> updateStocks(@RequestBody Stocks Stocks) {
          if (Stocks.getId() != null) {
-        	 stockService.updateStocks(Stocks);
+        	 Stocks = stockService.updateStocks(Stocks);
         }
-         
+         return new ResponseEntity<>(Stocks, HttpStatus.OK);  
     }
 
    
     @GetMapping("/Stock/{id}")
-    public Optional<Stocks> getStocks(@PathVariable Long StocksId) {
-        return stockService.retrieveStocks(StocksId);
-     }
+    public ResponseEntity<Stocks> getStock(@PathVariable Long id) {
+    	Stocks S = stockService.retrieveStocks(id);
+    	return new ResponseEntity<>( S, HttpStatus.OK);	
+    }
 
  
     @DeleteMapping("/Stock/{id}")

@@ -23,6 +23,12 @@ public class Stocks implements Serializable{
 	private Long id;
 	@Column(name="stock_remaining_quantity")
 	private int stock_remaining_quantity;
+	
+	
+	
+	public Stocks() {
+		super();
+	}
 	public Stocks(Long id, int stock_remaining_quantity) {
 		super();
 		this.id = id;

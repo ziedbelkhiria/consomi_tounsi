@@ -1,7 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import tn.esprit.spring.entity.Stocks;
 
@@ -15,7 +15,7 @@ List<Stocks> retrieveAllStocks();
 	
 	Stocks updateStocks(Stocks S);
 	
-	Optional<Stocks> retrieveStocks(Long StocksId);
+	Stocks retrieveStocks(Long StocksId);
 	
 
 }
