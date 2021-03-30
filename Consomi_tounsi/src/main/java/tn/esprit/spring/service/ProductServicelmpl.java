@@ -51,6 +51,6 @@ public class ProductServicelmpl implements ProductService  {
 	@Override
 	public List<Product> findProductByNameAndType(String q) {
 		
-		return Prodrep.findProductByProduct_nameAndProduct_type(q);
+		return Prodrep.findProductByProductNameAndProductType(q);
 	}
 }
