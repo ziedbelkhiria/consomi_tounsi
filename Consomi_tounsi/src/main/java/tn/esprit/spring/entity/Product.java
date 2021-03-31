@@ -24,14 +24,18 @@ public class Product implements Serializable {
 	@GeneratedValue (strategy= GenerationType.AUTO)
 	@Column(name="product_id")
 	private Long id;
-	private String productType;
-	private String productName ;
-	private String product_category ;
+	private String product_type;
+	private String product_name ;
+	
+	
 	private double product_price ;
 	@Column(name="code619",length=13)
 	
 	private Long code_a_barre ;
-	
+	public Product(Category category) {
+		super();
+		this.category = category;
+	}
 	
 	
 	
@@ -50,9 +54,9 @@ public class Product implements Serializable {
 	}
 	public Product(String product_type, String product_name, String product_category, double product_price) {
 		super();
-		this.productType = product_type;
-		this.productName = product_name;
-		this.product_category = product_category;
+		this.product_type = product_type;
+		this.product_name = product_name;
+		
 		this.product_price = product_price;
 	}
 	@ManyToOne
@@ -68,7 +72,71 @@ public class Product implements Serializable {
 	@OneToMany (cascade = CascadeType.ALL, mappedBy="Product")
 	private Set<orders> orders;
 	
+	@ManyToOne
+	Rayon rayon;
 	
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+
+	public Stocks getStocks() {
+		return stocks;
+	}
+
+
+
+	public void setStocks(Stocks stocks) {
+		this.stocks = stocks;
+	}
+
+
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
+
+
+	public Set<orders> getOrders() {
+		return orders;
+	}
+
+
+
+	public void setOrders(Set<orders> orders) {
+		this.orders = orders;
+	}
+
+
+
+	public Rayon getRayon() {
+		return rayon;
+	}
+
+
+
+	public void setRayon(Rayon rayon) {
+		this.rayon = rayon;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -76,23 +144,18 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 	public String getProduct_type() {
-		return productType;
+		return product_type;
 	}
 	public void setProduct_type(String product_type) {
-		this.productType = product_type;
+		this.product_type = product_type;
 	}
 	public String getProduct_name() {
-		return productName;
+		return product_name;
 	}
 	public void setProduct_name(String product_name) {
-		this.productName = product_name;
+		this.product_name = product_name;
 	}
-	public String getProduct_category() {
-		return product_category;
-	}
-	public void setProduct_category(String product_category) {
-		this.product_category = product_category;
-	}
+	
 	public double getProduct_price() {
 		return product_price;
 	}
@@ -105,12 +168,12 @@ public class Product implements Serializable {
 		int result = 1;
 		result = prime * result + ((code_a_barre == null) ? 0 : code_a_barre.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((product_category == null) ? 0 : product_category.hashCode());
-		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		
+		result = prime * result + ((product_name == null) ? 0 : product_name.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(product_price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((productType == null) ? 0 : productType.hashCode());
+		result = prime * result + ((product_type == null) ? 0 : product_type.hashCode());
 		return result;
 	}
 	@Override
@@ -132,29 +195,25 @@ public class Product implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (product_category == null) {
-			if (other.product_category != null)
+		
+		if (product_name == null) {
+			if (other.product_name != null)
 				return false;
-		} else if (!product_category.equals(other.product_category))
-			return false;
-		if (productName == null) {
-			if (other.productName != null)
-				return false;
-		} else if (!productName.equals(other.productName))
+		} else if (!product_name.equals(other.product_name))
 			return false;
 		if (Double.doubleToLongBits(product_price) != Double.doubleToLongBits(other.product_price))
 			return false;
-		if (productType == null) {
-			if (other.productType != null)
+		if (product_type == null) {
+			if (other.product_type != null)
 				return false;
-		} else if (!productType.equals(other.productType))
+		} else if (!product_type.equals(other.product_type))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", product_type=" + productType + ", product_name=" + productName
-				+ ", product_category=" + product_category + ", product_price=" + product_price + ", code_a_barre="
+		return "Product [id=" + id + ", product_type=" + product_type + ", product_name=" + product_name
+				+ ", product_category="  + ", product_price=" + product_price + ", code_a_barre="
 				+ code_a_barre + "]";
 	}
 

@@ -1,15 +1,15 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
-
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +23,16 @@ public class Stocks implements Serializable{
 	private Long id;
 	@Column(name="stock_remaining_quantity")
 	private int stock_remaining_quantity;
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="stocks")
+	private Set<Product> product;
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="stocks")
+	private Set<OrderStock> orderstocks;
+	
+	
+	
+	
 	
 	
 	
