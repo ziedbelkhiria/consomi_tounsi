@@ -1,5 +1,10 @@
 package Oussama;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +19,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table (name="T_RECLAMATION")
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class reclamation implements Serializable {
 	/**
 	 * 
@@ -29,34 +37,7 @@ public class reclamation implements Serializable {
 	private Date reclamation_date;
 	@Column(name="reclamation_status")
 	private String status;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Date getReclamation_date() {
-		return reclamation_date;
-	}
-	public void setReclamation_date(Date reclamation_date) {
-		this.reclamation_date = reclamation_date;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public reclamation(int id, Date reclamation_date, String status) {
-		super();
-		this.id = id;
-		this.reclamation_date = reclamation_date;
-		this.status = status;
-	}
-	
+
 
 	
 

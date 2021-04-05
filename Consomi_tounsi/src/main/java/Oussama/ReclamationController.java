@@ -12,14 +12,14 @@ public class ReclamationController {
     ReclamationService rm;
     //Create A new Reclamation
     @PostMapping
-    ResponseEntity<?> createNewreclamation( @RequestBody Reclamation r){
+    ResponseEntity<?> createNewReclamation( @RequestBody reclamation r){
         rm.addReclamation(r);
         return new ResponseEntity<>(new MessageResponseModel("Reclamation Added "), HttpStatus.CREATED);
     }
     //Show All reclamation
     @GetMapping
     ResponseEntity<?> getAllReclamation(){
-        List<Reclamation> r=rm.retrieveAllReclamation();
+        List<reclamation> r=rm.retrieveAllReclamation();
         GetAllReclamationResponse reclamations = new GetAllReclamationResponse(r);
         return new ResponseEntity<>(reclamations,HttpStatus.OK);
     }
@@ -31,14 +31,14 @@ public class ReclamationController {
     }
     //Delete an Reclamation by id
     @DeleteMapping ("/{id}")
-    ResponseEntity<?> deleteProductById(@PathVariable Long id){
+    ResponseEntity<?> deleteReclamationById(@PathVariable Long id){
         rm.deleteReclamation(id);
         return new ResponseEntity<>(new MessageResponseModel("Reclamation Deleted"),HttpStatus.OK);
 
     }
     //Update an Reclamation
     @PutMapping("/{id}")
-    ResponseEntity<?> updateProduct(@PathVariable Long id ,@RequestBody Reclamation r){
+    ResponseEntity<?> updateReclamation(@PathVariable Long id ,@RequestBody reclamation r){
 
         rm.updateReclamation(id,r);
         return new ResponseEntity<>(new MessageResponseModel(" Reclamation Updated"), HttpStatus.OK);

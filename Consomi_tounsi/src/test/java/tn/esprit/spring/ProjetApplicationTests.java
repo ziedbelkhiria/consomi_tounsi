@@ -22,11 +22,11 @@ import tn.esprit.spring.entity.Stocks;
 
 
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)//
 @SpringBootTest
 public class ProjetApplicationTests {
 	
-	@Autowired
+	/*@Autowired
 	stockService proRep;
 
 	@Test
@@ -48,7 +48,7 @@ public class ProjetApplicationTests {
 			proRep.updateStocks(1);
 		System.out.println(S);
 	}*/
-	@Test
+	/*@Test
 	public void deleteStocks() {
 		proRep.deleteStocks(1L);
 		
@@ -61,8 +61,9 @@ public class ProjetApplicationTests {
 			System.out.println(S);
 		}
 	}
-	
 
+
+	 */
 
 
 

@@ -16,10 +16,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import tn.esprit.spring.entity.delivery_man;
 import tn.esprit.spring.entity.orders;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="T_DELIVERY")
 public class Delivery implements Serializable {
 	/**
@@ -43,81 +51,6 @@ public class Delivery implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="delivery")
 	private Set<orders> orders;
-	
-	
-	public Delivery(int id, Date delivery_date, String status, double price) {
-		super();
-		this.id = id;
-		this.delivery_date = delivery_date;
-		this.status = status;
-		this.price = price;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Date getDelivery_date() {
-		return delivery_date;
-	}
-	public void setDelivery_date(Date delivery_date) {
-		this.delivery_date = delivery_date;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((delivery_date == null) ? 0 : delivery_date.hashCode());
-		result = prime * result + id;
-		long temp;
-		temp = Double.doubleToLongBits(price);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Delivery other = (Delivery) obj;
-		if (delivery_date == null) {
-			if (other.delivery_date != null)
-				return false;
-		} else if (!delivery_date.equals(other.delivery_date))
-			return false;
-		if (id != other.id)
-			return false;
-		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "delivery [id=" + id + ", delivery_date=" + delivery_date + ", status=" + status + ", price=" + price
-				+ "]";
-	}
 	
 	
 	
