@@ -25,7 +25,7 @@ public class delivery_manController {
     @GetMapping
     ResponseEntity<?> getAllDelivery_man() {
         List<delivery_man> d = rm.retrieveAllDelivery_man();
-        GetAllDelivery_manResponse delivery_man = new GetAllDelivery_manResponse(d);
+        GetAlldelivery_manResponse delivery_man = new GetAlldelivery_manResponse(d);
         return new ResponseEntity<>(delivery_man, HttpStatus.OK);
 
     }
@@ -47,9 +47,5 @@ public class delivery_manController {
         rm.updatedelivery_man(d);
         return new ResponseEntity<>(new MessageResponseModel(" delivery_man Updated"), HttpStatus.OK);
     }
-    @GetMapping("/prix")
-    ResponseEntity<?> getPrixdelivery_man(@RequestBody delivery_man d){
-        double prix=rm.calculFrais(d);
-        return new ResponseEntity<>(prix, HttpStatus.OK);
-    }
+
 }
