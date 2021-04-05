@@ -45,6 +45,9 @@ public class Delivery implements Serializable {
 	private String status;
 	@Column(name="delivery_price")
 	private double price ;
+	@Column(name = "moyen_de_transport")
+	private String moyenDeTransport;
+	private float distance;
 	
 	@ManyToOne
 	delivery_man delivery_man;

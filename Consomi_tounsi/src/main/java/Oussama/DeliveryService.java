@@ -2,9 +2,9 @@ package Oussama;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.spring.entity.orders;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DeliveryService {
@@ -51,4 +51,28 @@ public class DeliveryService {
         return  D.findById(Integer.parseInt(id));
     }
 
+    public double calculFrais (Delivery D){
+        Set<orders> ordersList=D.getOrders();
+        double frais_moy_tran=D.getPrice();
+        String moy_transport=D.getMoyenDeTransport();
+        if(moy_transport.equals("car"))
+            frais_moy_tran+=2;
+        else
+        {
+                frais_moy_tran+=6;
+        }
+        float poids=0;
+        List<orders> l=new ArrayList<>(ordersList);
+        for(int i=0;i<l.size();i++)
+        {
+            poids+=l.get(i).getWeight();
+        }
+        if(poids>5 && poids <10)
+            frais_moy_tran+=5;
+        else
+            frais_moy_tran+=10;
+        return frais_moy_tran;
+    }
+
 }
+

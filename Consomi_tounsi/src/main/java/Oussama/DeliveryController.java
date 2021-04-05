@@ -46,4 +46,9 @@ public class DeliveryController {
         rm.updateDelivery(d);
         return new ResponseEntity<>(new MessageResponseModel(" Delivery Updated"), HttpStatus.OK);
     }
+    @GetMapping("/prix")
+    ResponseEntity<?> getPrixDelivery(@RequestBody Delivery d){
+        double prix=rm.calculFrais(d);
+        return new ResponseEntity<>(prix, HttpStatus.OK);
+    }
 }
