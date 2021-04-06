@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 import tn.esprit.spring.entity.Product;
+import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.repository.ProductRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class ProductServicelmpl implements ProductService  {
 
 	@Autowired	
 	public ProductRepository Prodrep;
+	
+	@Autowired
+	public stockService StoRepo;
 	
 	//private static final org.apache.logging.log4j.Logger l= LogManager.getLogger(ProductService.class);
 
@@ -53,4 +57,22 @@ public class ProductServicelmpl implements ProductService  {
 		
 		return Prodrep.findProductByProduct_nameAndProduct_type(q,t);
 	}
+	/*
+	 * @Override
+	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
+		Entreprise e = EntRep.findById(entrepriseId).get();
+		Departement d= DeptRep.findById(depId).get();
+		d.setEntreprises(e);
+		DeptRep.save(d);
+	}
+	 */
+
+	/*@Override
+	public void affecterProduitAStocks(int ProId, int StoId) {
+		Stocks St = StoRepo.findById(StoId).get();
+		Product Pr = Prodrep.findById(ProId).get();
+		Pr.setStocks(St);
+		Prodrep.save(Pr);
+	}*/
 }
+	

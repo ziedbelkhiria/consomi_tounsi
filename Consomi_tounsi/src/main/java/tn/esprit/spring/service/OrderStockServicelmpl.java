@@ -39,4 +39,9 @@ public class OrderStockServicelmpl implements OrderStockService{
 	public OrderStock retrieveOrderStock(Long idOrderStock) {
 		return orderstockrepo.findOrderStockByid(idOrderStock);
 	}
+
+	
+	
+	
+	
 }

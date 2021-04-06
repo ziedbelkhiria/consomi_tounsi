@@ -2,12 +2,15 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 //import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entity.OrderStock;
+import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Stocks;
-
+import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.StockRepository;
 @Service
 public class StockServicelmpl implements stockService {
@@ -15,6 +18,11 @@ public class StockServicelmpl implements stockService {
 @Autowired
 	
 	public StockRepository Stockrep;
+
+
+
+@Autowired
+public ProductRepository prorep;
 
 	@Override
 	public List<Stocks> retrieveAllStocks() {
@@ -48,7 +56,39 @@ public class StockServicelmpl implements stockService {
 		return Stockrep.findStockByid(StocksId);
 	}
 
+	@Override
+	public Stocks PassOrderStock(OrderStock orderstock) {
+		Stocks stock = PassOrderStock(orderstock);
+		if (stock.getStock_remaining_quantity() < stock.getMin() ) {
+			Set<OrderStock> orders = stock.getOrderstocks();
+			orders.add(orderstock);
+			int RemainingQuantity = stock.getStock_remaining_quantity();
+			RemainingQuantity = RemainingQuantity +1;
+			stock.setStock_remaining_quantity(RemainingQuantity);
+			stock = Stockrep.save(stock);
+			
+		}
+		
+		return stock;
+	}
+
+	@Override
+	public void affecterProductAStocks(Long ProId, Long StoId) {
+		Stocks St = Stockrep.findById(StoId).get();
+		Product Pr = prorep.findById(ProId).get();
+		Pr.setStocks(St);
+		prorep.save(Pr);
+	
+		
+	}
+
+}
+
 	
 	
 
-}
+	
+	
+	
+
+

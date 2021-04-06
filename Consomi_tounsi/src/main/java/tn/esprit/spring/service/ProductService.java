@@ -18,6 +18,8 @@ public interface ProductService {
 	Product retrieveProduct(Long idProduct);
 
 	List<Product> findProductByNameAndType(String q,String t);
+	
+	//void affecterProduitAStocks(int ProId, int StoId);
 
 	
 

@@ -9,50 +9,54 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Rayon;
-import tn.esprit.spring.entity.Type;
+import tn.esprit.spring.entity.RayonType;
 import tn.esprit.spring.repository.RayonRepository;
 
 @Service
+
 public class RayonServicelmpl implements RayonService {
 	
+	
 	@Autowired
-	RayonRepository RayonRep;
-
+	public RayonRepository rayonrepository;
+	
+	
+	
 	@Override
 	public List<Rayon> retrieveAllRayon() {
-		return (List<Rayon>) RayonRep.findAll();
+		return (List<Rayon>) rayonrepository.findAll();
 	}
 
 	@Override
 	public Rayon addRayon(Rayon R) {
-		return RayonRep.save(R);
+		return rayonrepository.save(R);
 	}
 
 	@Override
 	public void deleteRayon(Long id) {
-		RayonRep.deleteById(id);
+		rayonrepository.deleteById(id);
 		
 	}
 
 	@Override
 	public Rayon updateRayon(Rayon R) {
-		return RayonRep.save(R);
+		return rayonrepository.save(R);
 	}
 
 	@Override
 	public Rayon retrieveRayon(Long idRayon) {
-		return RayonRep.findRayonByid(idRayon);
+		return rayonrepository.findRayonByid(idRayon);
 	}
 
 	@Override
 	public Rayon classifyProduct(Product product) {
 		List<Rayon> listRayon = new ArrayList<>();
-		if (product.getCategory().getType() == Type.Réfrigérateur) {
-		listRayon =	RayonRep.findRayonByType(Type.Réfrigérateur);
+		if (product.getCategory().getType() == RayonType.Réfrigérateur) {
+		listRayon =	rayonrepository.findRayonByType(RayonType.Réfrigérateur);
 		} else {
-			listRayon = RayonRep.findRayonByType(Type.normal);
-		}
-		Rayon rayon = null;
+			listRayon = rayonrepository.findRayonByType(RayonType.normal);}
+		
+		Rayon rayon = null ;
 		for (int i = 0; i < listRayon.size(); i++) {
 			rayon = listRayon.get(i);
 			if (rayon.getQuantity() < rayon.getMax()) {
@@ -62,7 +66,7 @@ public class RayonServicelmpl implements RayonService {
 			int quantity = rayon.getQuantity();
 			quantity = quantity +1;
 			rayon.setQuantity(quantity);
-			rayon = RayonRep.save(rayon);
+			rayon = rayonrepository.save(rayon);
 			break;	
 			}
 					
