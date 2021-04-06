@@ -26,11 +26,7 @@ public class RayonRestController {
 	@Autowired
 	public RayonService rayonservice;
 	
-	 public RayonRestController(RayonService rayonservice) {
-		super();
-		this.rayonservice = rayonservice;
 	
-	}
 	
 	
 	@GetMapping("/Rayon")

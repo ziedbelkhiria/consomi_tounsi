@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tn.esprit.spring.entity.Product;
+import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.service.ProductService;
+import tn.esprit.spring.service.stockService;
 
 @Controller
 @RequestMapping("/api")
 public class ProductRestController {
 	@Autowired
 	public ProductService productService;
+	
+	@Autowired
+	public stockService stockService;
 	
 
 	public ProductRestController(ProductService productService) {
@@ -43,10 +48,11 @@ public class ProductRestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Product> addProduit(@RequestBody Product product)  {
+    public ResponseEntity<Product> addProduit(@RequestBody Product product, Stocks stock)  {
     	String codeABarre = String.valueOf(product.getCode_a_barre());
     	if (codeABarre.startsWith("619")) {
-    		product =	productService.addProduct(product);			
+    		product =	productService.addProduct(product);
+    		
 		} else {
 			return new ResponseEntity<>( product,  HttpStatus.FORBIDDEN);
 		}
@@ -84,5 +90,5 @@ public class ProductRestController {
     	List<Product> list =productService.findProductByNameAndType(q,t);
     	return new ResponseEntity<>( list, HttpStatus.OK);
     }
-
+   
 }
