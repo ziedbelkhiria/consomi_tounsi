@@ -63,7 +63,7 @@ public ProductRepository prorep;
 			Set<OrderStock> orders = stock.getOrderstocks();
 			orders.add(orderstock);
 			int RemainingQuantity = stock.getStock_remaining_quantity();
-			RemainingQuantity = RemainingQuantity +1;
+			RemainingQuantity = RemainingQuantity + orderstock.getQuantity();
 			stock.setStock_remaining_quantity(RemainingQuantity);
 			stock = Stockrep.save(stock);
 			

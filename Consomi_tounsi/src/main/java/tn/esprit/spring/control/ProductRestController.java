@@ -23,7 +23,7 @@ import tn.esprit.spring.service.ProductService;
 import tn.esprit.spring.service.stockService;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/product")
 public class ProductRestController {
 	@Autowired
 	public ProductService productService;

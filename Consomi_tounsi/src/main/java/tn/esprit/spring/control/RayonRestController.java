@@ -20,7 +20,7 @@ import tn.esprit.spring.entity.Rayon;
 import tn.esprit.spring.service.RayonService;
 
 @Controller
-@RequestMapping("/Rapi")
+@RequestMapping("/api/rayon")
 public class RayonRestController {
 	
 	@Autowired

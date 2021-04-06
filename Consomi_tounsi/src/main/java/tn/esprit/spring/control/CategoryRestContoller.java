@@ -18,7 +18,7 @@ import tn.esprit.spring.service.CategoryService;
 
 
 @RestController
-@RequestMapping("/req")
+@RequestMapping("/api/category")
 public class CategoryRestContoller {
 
 	@Autowired

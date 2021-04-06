@@ -19,7 +19,7 @@ import tn.esprit.spring.entity.OrderStock;
 import tn.esprit.spring.service.OrderStockService;
 
 @Controller
-@RequestMapping("/OSapi")
+@RequestMapping("/api/orderstock")
 public class OrderStockController {
 	
 	@Autowired

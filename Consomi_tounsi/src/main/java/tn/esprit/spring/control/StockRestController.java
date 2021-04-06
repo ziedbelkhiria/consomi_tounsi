@@ -21,7 +21,7 @@ import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.service.stockService;
 
 @Controller
-@RequestMapping("/API")
+@RequestMapping("/api/stock")
 public class StockRestController {
 	@Autowired
 	public stockService stockService;
