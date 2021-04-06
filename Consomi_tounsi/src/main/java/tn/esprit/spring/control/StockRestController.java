@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.OrderStock;
+import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.service.stockService;
 
@@ -63,19 +64,22 @@ public class StockRestController {
     	stockService.deleteStocks(id);
     }
 	
-   @PostMapping("/Stock/pass")
-    public ResponseEntity<Stocks>  PassOrderStock(@RequestBody OrderStock orderstock)
+   @PostMapping("/Stock/pass/{id}")
+    public ResponseEntity<Stocks>  PassOrderStock(@RequestBody OrderStock orderstock, @PathVariable ("id") long id)
     {
-    	Stocks stock = stockService.PassOrderStock(orderstock);
-    	return new ResponseEntity<>(stock, HttpStatus.OK);
+	   
+    	Stocks stock = stockService.retrieveStocks(id) ;
+    	orderstock.setStocks(stock);
+    	return new ResponseEntity<>(stockService.PassOrderStock(orderstock), HttpStatus.OK);
     	
 		
     	
     }
    
     @PutMapping("/ProASto/{ProId}/{StoId}")
-    public void affecterProductAStocks(@PathVariable ("ProId") Long ProId,@PathVariable("StoId") Long StoId ){
-    	stockService.affecterProductAStocks(ProId, StoId);
+    public ResponseEntity<Product> affecterProductAStocks(@PathVariable ("ProId") Long ProId,@PathVariable("StoId") Long StoId ){
+    Product product = 	stockService.affecterProductAStocks(ProId, StoId);
+    	return new ResponseEntity<>(product, HttpStatus.OK);
     }
     
 

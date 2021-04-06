@@ -58,7 +58,7 @@ public ProductRepository prorep;
 
 	@Override
 	public Stocks PassOrderStock(OrderStock orderstock) {
-		Stocks stock = PassOrderStock(orderstock);
+		Stocks stock = orderstock.getStocks();
 		if (stock.getStock_remaining_quantity() < stock.getMin() ) {
 			Set<OrderStock> orders = stock.getOrderstocks();
 			orders.add(orderstock);
@@ -73,11 +73,11 @@ public ProductRepository prorep;
 	}
 
 	@Override
-	public void affecterProductAStocks(Long ProId, Long StoId) {
+	public Product affecterProductAStocks(Long ProId, Long StoId) {
 		Stocks St = Stockrep.findById(StoId).get();
 		Product Pr = prorep.findById(ProId).get();
 		Pr.setStocks(St);
-		prorep.save(Pr);
+		return prorep.save(Pr);
 	
 		
 	}

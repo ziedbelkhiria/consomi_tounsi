@@ -4,7 +4,7 @@ import java.util.List;
 //import java.util.Optional;
 
 import tn.esprit.spring.entity.OrderStock;
-
+import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Stocks;
 
 public interface stockService {
@@ -21,7 +21,7 @@ List<Stocks> retrieveAllStocks();
 	
 	Stocks PassOrderStock (OrderStock orderstock);
 	
-	void affecterProductAStocks(Long ProId, Long StoId);
+	Product affecterProductAStocks(Long ProId, Long StoId);
 	
 	
 	
