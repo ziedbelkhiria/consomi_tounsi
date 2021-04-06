@@ -62,7 +62,7 @@ public class Product implements Serializable {
 	@ManyToOne
 	Category category;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	Stocks stocks;
 	
 

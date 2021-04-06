@@ -31,7 +31,7 @@ public class Rayon implements Serializable{
 	private int Quantity;
 	
 	@Enumerated(EnumType.STRING)
-	Type Rtype;
+	RayonType type;
 	@Column(name="Max")
 	private int Max;
 	
@@ -54,11 +54,11 @@ public class Rayon implements Serializable{
 	}
 
 
-	public Rayon(Long id, int quantity, tn.esprit.spring.entity.Type type) {
+	public Rayon(Long id, int quantity, tn.esprit.spring.entity.RayonType type) {
 		super();
 		this.id = id;
 		Quantity = quantity;
-		Rtype = type;
+		this.type = type;
 	}
 	
 	
@@ -94,11 +94,11 @@ public class Rayon implements Serializable{
 	public void setQuantity(int quantity) {
 		Quantity = quantity;
 	}
-	public Type getType() {
-		return Rtype;
+	public RayonType getType() {
+		return type;
 	}
-	public void setType(Type type) {
-		Rtype = type;
+	public void setType(RayonType type) {
+		this.type = type;
 	}
 	@Override
 	public int hashCode() {
@@ -106,7 +106,7 @@ public class Rayon implements Serializable{
 		int result = 1;
 		result = prime * result + Max;
 		result = prime * result + Quantity;
-		result = prime * result + ((Rtype == null) ? 0 : Rtype.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		return result;
@@ -124,7 +124,7 @@ public class Rayon implements Serializable{
 			return false;
 		if (Quantity != other.Quantity)
 			return false;
-		if (Rtype != other.Rtype)
+		if (type != other.type)
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -142,7 +142,7 @@ public class Rayon implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Rayon [id=" + id + ", Quantity=" + Quantity + ", Type=" + Rtype + ", Max=" + Max + ", product=" + product
+		return "Rayon [id=" + id + ", Quantity=" + Quantity + ", Type=" + type + ", Max=" + Max + ", product=" + product
 				+ "]";
 	}
 	

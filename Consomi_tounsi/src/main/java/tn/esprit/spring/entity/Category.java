@@ -33,7 +33,7 @@ public class Category implements Serializable {
 	private String capacity;
 	
 	@Enumerated(EnumType.STRING)
-	Type Type;
+	RayonType Rtype;
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy="category")
 	private Set<Product> product;
@@ -51,12 +51,12 @@ public class Category implements Serializable {
 
 
 
-	public Category(Long id, String name, String capacity, tn.esprit.spring.entity.Type type) {
+	public Category(Long id, String name, String capacity, tn.esprit.spring.entity.RayonType type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
-		Type = type;
+		Rtype = type;
 	}
 
 
@@ -109,14 +109,14 @@ public class Category implements Serializable {
 
 
 
-	public Type getType() {
-		return Type;
+	public RayonType getType() {
+		return Rtype;
 	}
 
 
 
-	public void setType(Type type) {
-		Type = type;
+	public void setType(RayonType type) {
+		Rtype = type;
 	}
 
 
@@ -125,7 +125,7 @@ public class Category implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Type == null) ? 0 : Type.hashCode());
+		result = prime * result + ((Rtype == null) ? 0 : Rtype.hashCode());
 		result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -143,7 +143,7 @@ public class Category implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (Type != other.Type)
+		if (Rtype != other.Rtype)
 			return false;
 		if (capacity == null) {
 			if (other.capacity != null)
@@ -167,7 +167,7 @@ public class Category implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", capacity=" + capacity + ", Type=" + Type + "]";
+		return "Category [id=" + id + ", name=" + name + ", capacity=" + capacity + ", Type=" + Rtype + "]";
 	}
 	
 }
