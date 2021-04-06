@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,10 +30,10 @@ public class Stocks implements Serializable{
 	
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy="stocks")
-	private Set<Product> product;
+	private List<Product> product;
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy="stocks")
-	private Set<OrderStock> orderstocks;
+	private List<OrderStock> orderstocks;
 	
 	
 	
@@ -42,7 +43,7 @@ public class Stocks implements Serializable{
 
 
 
-	public Stocks(Long id, int stock_remaining_quantity, int min, Set<Product> product, Set<OrderStock> orderstocks) {
+	public Stocks(Long id, int stock_remaining_quantity, int min, List<Product> product, List<OrderStock> orderstocks) {
 		super();
 		this.id = id;
 		this.RemainingQuantity = stock_remaining_quantity;
@@ -89,25 +90,25 @@ public class Stocks implements Serializable{
 
 
 
-	public Set<Product> getProduct() {
+	public List<Product> getProduct() {
 		return product;
 	}
 
 
 
-	public void setProduct(Set<Product> product) {
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
 
 
 
-	public Set<OrderStock> getOrderstocks() {
+	public List<OrderStock> getOrderstocks() {
 		return orderstocks;
 	}
 
 
 
-	public void setOrderstocks(Set<OrderStock> orderstocks) {
+	public void setOrderstocks(List<OrderStock> orderstocks) {
 		this.orderstocks = orderstocks;
 	}
 

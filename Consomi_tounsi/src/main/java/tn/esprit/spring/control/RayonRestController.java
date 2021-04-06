@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Rayon;
-
+import tn.esprit.spring.service.ProductService;
 import tn.esprit.spring.service.RayonService;
 
 @Controller
@@ -25,6 +25,9 @@ public class RayonRestController {
 	
 	@Autowired
 	public RayonService rayonservice;
+	
+	@Autowired
+	public ProductService productService;
 	
 	
 	
@@ -63,9 +66,11 @@ public class RayonRestController {
     	rayonservice.deleteRayon(id);
     }
 	
-	@PostMapping("/Classify")
-	public ResponseEntity<Rayon> classifyProduct(@RequestBody Product product)
+	@PostMapping("/Classify/{id}")
+	public ResponseEntity<Rayon> classifyProduct(@PathVariable long id)
 	{
+		Product product = productService.retrieveProduct(id);
+		
 		Rayon rayon = rayonservice.classifyProduct(product);
 		return new ResponseEntity<>(rayon, HttpStatus.OK);
 	}

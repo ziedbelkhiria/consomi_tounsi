@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.OrderStock;
@@ -59,17 +61,17 @@ public ProductRepository prorep;
 	@Override
 	public Stocks PassOrderStock(OrderStock orderstock) {
 		Stocks stock = orderstock.getStocks();
-		if (stock.getStock_remaining_quantity() < stock.getMin() ) {
-			Set<OrderStock> orders = stock.getOrderstocks();
+		
+			List<OrderStock> orders = stock.getOrderstocks();
 			orders.add(orderstock);
 			int RemainingQuantity = stock.getStock_remaining_quantity();
 			RemainingQuantity = RemainingQuantity + orderstock.getQuantity();
 			stock.setStock_remaining_quantity(RemainingQuantity);
 			stock = Stockrep.save(stock);
 			
-		}
 		
-		return stock;
+		
+		return  stock;
 	}
 
 	@Override
