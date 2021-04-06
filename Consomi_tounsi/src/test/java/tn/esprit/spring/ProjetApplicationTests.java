@@ -31,7 +31,7 @@ public class ProjetApplicationTests {
 
 	@Test
 	public void testAddStocks() {
-		Stocks S =new Stocks(1,100);
+		Stocks S =new Stocks(null, 1,100, null, null);
 		proRep.addStocks(S);
 	}
 	
