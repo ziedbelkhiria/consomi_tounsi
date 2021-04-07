@@ -1,7 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,9 +40,9 @@ public class CategoryServicelmpl implements CategoryService {
 	}
 
 	@Override
-	public Optional<Category> retrieveCategory(Long idCategory) {
+	public Category retrieveCategory(Long idCategory) {
 		
-		return categpryrep.findById(idCategory);
+		return categpryrep.findCategoryById(idCategory);
 	}
 
 }

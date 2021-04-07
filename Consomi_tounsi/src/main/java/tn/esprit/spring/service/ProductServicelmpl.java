@@ -2,6 +2,9 @@ package tn.esprit.spring.service;
 
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 //import java.util.Optional;
 
@@ -57,22 +60,30 @@ public class ProductServicelmpl implements ProductService  {
 		
 		return Prodrep.findProductByProduct_nameAndProduct_type(q,t);
 	}
-	/*
-	 * @Override
-	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		Entreprise e = EntRep.findById(entrepriseId).get();
-		Departement d= DeptRep.findById(depId).get();
-		d.setEntreprises(e);
-		DeptRep.save(d);
-	}
-	 */
+	
 
 	/*@Override
-	public void affecterProduitAStocks(int ProId, int StoId) {
-		Stocks St = StoRepo.findById(StoId).get();
-		Product Pr = Prodrep.findById(ProId).get();
-		Pr.setStocks(St);
-		Prodrep.save(Pr);
-	}*/
+	public Product VerifierProductByDateExpiration(long ProductId, String addNom) {
+		DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(format.format(date));
+		Product p = Prodrep.findById((long) ProductId).get();
+		if (p.getDateExp()==date ) {
+			System.out.println("produit a rejeté");
+		}//else if (date - p.getDateExp()=15 "jour") {
+		//publicite pub = pubrepo.findpub(addnom.get) 
+		//p.setpublicite(addnom)
+		//productrepo.save(a)
+		else {	p.getDateProd() ;}	
+		
+	
+		System.out.println("publicité");
+			
+				return null;
+				
+
+		}*/
+
+	
 }
 	

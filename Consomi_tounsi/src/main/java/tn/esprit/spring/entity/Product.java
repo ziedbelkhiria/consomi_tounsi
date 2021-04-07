@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,8 @@ public class Product implements Serializable {
 	private Long id;
 	private String product_type;
 	private String product_name ;
-	
+	@Column(name="date_expiration")
+	private Date dateExp;
 	
 	private double product_price ;
 	@Column(name="code619",length=13)
@@ -59,7 +61,13 @@ public class Product implements Serializable {
 		
 		this.product_price = product_price;
 	}
-	@ManyToOne
+	
+	public Product(Date dateExp) {
+		super();
+		this.dateExp = dateExp;
+	}
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	Category category;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -75,7 +83,8 @@ public class Product implements Serializable {
 	@ManyToOne
 	Rayon rayon;
 	
-	
+	@ManyToOne
+	private SousCategory souscat;
 	
 	public Category getCategory() {
 		return category;
@@ -137,6 +146,18 @@ public class Product implements Serializable {
 
 
 
+	public Date getDateExp() {
+		return dateExp;
+	}
+
+
+
+	public void setDateExp(Date dateExp) {
+		this.dateExp = dateExp;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -166,14 +187,20 @@ public class Product implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((code_a_barre == null) ? 0 : code_a_barre.hashCode());
+		result = prime * result + ((dateExp == null) ? 0 : dateExp.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		
+		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
 		result = prime * result + ((product_name == null) ? 0 : product_name.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(product_price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((product_type == null) ? 0 : product_type.hashCode());
+		result = prime * result + ((provider == null) ? 0 : provider.hashCode());
+		result = prime * result + ((rayon == null) ? 0 : rayon.hashCode());
+		result = prime * result + ((souscat == null) ? 0 : souscat.hashCode());
+		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
 		return result;
 	}
 	@Override
@@ -185,17 +212,31 @@ public class Product implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
 		if (code_a_barre == null) {
 			if (other.code_a_barre != null)
 				return false;
 		} else if (!code_a_barre.equals(other.code_a_barre))
+			return false;
+		if (dateExp == null) {
+			if (other.dateExp != null)
+				return false;
+		} else if (!dateExp.equals(other.dateExp))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		
+		if (orders == null) {
+			if (other.orders != null)
+				return false;
+		} else if (!orders.equals(other.orders))
+			return false;
 		if (product_name == null) {
 			if (other.product_name != null)
 				return false;
@@ -208,13 +249,34 @@ public class Product implements Serializable {
 				return false;
 		} else if (!product_type.equals(other.product_type))
 			return false;
+		if (provider == null) {
+			if (other.provider != null)
+				return false;
+		} else if (!provider.equals(other.provider))
+			return false;
+		if (rayon == null) {
+			if (other.rayon != null)
+				return false;
+		} else if (!rayon.equals(other.rayon))
+			return false;
+		if (souscat == null) {
+			if (other.souscat != null)
+				return false;
+		} else if (!souscat.equals(other.souscat))
+			return false;
+		if (stocks == null) {
+			if (other.stocks != null)
+				return false;
+		} else if (!stocks.equals(other.stocks))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", product_type=" + product_type + ", product_name=" + product_name
-				+ ", product_category="  + ", product_price=" + product_price + ", code_a_barre="
-				+ code_a_barre + "]";
+		return "Product [id=" + id + ", product_type=" + product_type + ", product_name=" + product_name + ", dateExp="
+				+ dateExp + ", product_price=" + product_price + ", code_a_barre=" + code_a_barre + ", category="
+				+ category + ", stocks=" + stocks + ", provider=" + provider + ", orders=" + orders + ", rayon=" + rayon
+				+ ", souscat=" + souscat + "]";
 	}
 
 }

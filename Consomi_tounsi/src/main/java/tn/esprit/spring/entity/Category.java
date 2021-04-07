@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,8 +36,11 @@ public class Category implements Serializable {
 	@Enumerated(EnumType.STRING)
 	RayonType Rtype;
 	
-	@OneToMany (cascade = CascadeType.ALL, mappedBy="category")
+	@OneToMany (cascade = CascadeType.ALL, mappedBy="category" ,fetch = FetchType.EAGER)
 	private Set<Product> product;
+	
+	@OneToMany(mappedBy="category",cascade = CascadeType.ALL)
+	private Set<SousCategory> souscategory;
 	
 	public Category() {
 		super();

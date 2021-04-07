@@ -19,8 +19,9 @@ public interface ProductService {
 
 	List<Product> findProductByNameAndType(String q,String t);
 	
-	//void affecterProduitAStocks(int ProId, int StoId);
-
 	
+
+
+	//Product VerifierProductByDateExpiration(long ProductId, String adNom);
 
 }

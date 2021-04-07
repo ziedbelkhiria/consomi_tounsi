@@ -40,7 +40,7 @@ public class ProductRestController {
 		
 	
 	
-	@GetMapping("/produits")
+	@GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProduits()  {
          List<Product> P = productService.retrieveAllProducts();
          return new ResponseEntity<>( P, HttpStatus.OK);

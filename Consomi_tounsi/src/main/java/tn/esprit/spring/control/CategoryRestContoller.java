@@ -49,7 +49,7 @@ public class CategoryRestContoller {
 
    
     @GetMapping("/Category/{id}")
-    public Optional<Category> getCategory(@PathVariable Long idCategory) {
+    public Category getCategory(@PathVariable Long idCategory) {
         return  categoryService.retrieveCategory(idCategory);
      }
 
