@@ -9,45 +9,56 @@ import java.util.Optional;
 @Service
     public class ReclamationService {
     @Autowired
-    ReclamationRepository Pr;
-    
-    public List<reclamation> retrieveAllProducts() {
-        return (List<reclamation>) Pr.findAll();
+    ReclamationRepository r;
+
+    public List<reclamation> retrieveAllReclamation() {
+        return (List<reclamation>) r.findAll();
     }
 
-    
-    public Product addProduct(Product P) {
-        return Pr.save(P);
+
+    public reclamation addReclamation(reclamation rr) {
+        return r.save(rr);
     }
 
-    
-    public void deleteProduct(Long id) {
-        Optional<Product> optionalProduct=Pr.findById(id);
-        if (!optionalProduct.isPresent()) {
-            throw new IllegalStateException("Product Not Found");
+
+    public void deleteReclamation(Long id) {
+        Optional<reclamation> optionalReclamation = r.findById(id);
+        if (!optionalReclamation.isPresent()) {
+            throw new IllegalStateException("Reclamation Not Found");
         }
-        Pr.deleteById(id);
+        r.deleteById(id);
 
     }
 
-    
-    public void deleteProduct(String id) {
+
+    public void deleteReclamation(String id) {
 
 
-        Pr.deleteById(Long.parseLong(id));
+        r.deleteById(Long.parseLong(id));
     }
 
-    
-    public Product updateProduct(Product P) {
-        return Pr.save(P);
+
+    public reclamation updateReclamation(Long id,reclamation rr) {
+        reclamation result=null;
+        Optional<reclamation> rec=this.r.findById(id);
+        if(rec.isPresent())
+        {
+            result=rec.get();
+            this.r.save(rr);
+        }
+        else
+            throw new IllegalStateException("Id not found");
+        return result;
     }
 
-    
-    public Optional<Product> FindProduct(Long id) {
-      return   Pr.findById(id);
+
+    public Optional<reclamation> FindReclamation(Long id) {
+        return r.findById(id);
     }
 
-   
-    public Optional<Product> FindProduct(String id) {
-      return  Pr.findById(Long.parseLong(id));
+
+    public Optional<reclamation> FindReclamation(String id) {
+
+        return r.findById(Long.parseLong(id));
     }
+}

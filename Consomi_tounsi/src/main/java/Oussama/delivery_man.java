@@ -6,40 +6,42 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-@Table (name="T_RECLAMATION")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class reclamation implements Serializable {
+
+@Table(name="T_DELIVERY_MAN")
+public class delivery_man implements Serializable  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
-	@Column(name="reclamation_id")
+	@Column(name="deliveryman_id")
 	private int id;
-	@Temporal (TemporalType.DATE)
-	private Date reclamation_date;
-	@Column(name="reclamation_status")
-	private String status;
-
-
+	@Column(name="deliveryman_name")
+	private String name ;
+	@Column(name="deliveryman_lastname")
+	private String lastname ;
 	
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="delivery_man")
+	private Set<Delivery> delivery;
+	
+	
 
 }
