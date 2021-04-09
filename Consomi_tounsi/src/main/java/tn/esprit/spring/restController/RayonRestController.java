@@ -1,4 +1,4 @@
-package tn.esprit.spring.control;
+package tn.esprit.spring.restController;
 
 import java.util.List;
 

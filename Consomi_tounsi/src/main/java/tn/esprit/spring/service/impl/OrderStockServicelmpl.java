@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.OrderStock;
 import tn.esprit.spring.repository.OrderStockRepository;
+import tn.esprit.spring.service.OrderStockService;
 
 @Service
 public class OrderStockServicelmpl implements OrderStockService{

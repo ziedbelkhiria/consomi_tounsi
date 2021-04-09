@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.impl;
 
 
 
@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.repository.ProductRepository;
+import tn.esprit.spring.service.ProductService;
+import tn.esprit.spring.service.stockService;
 
 @Service
 public class ProductServicelmpl implements ProductService  {
@@ -25,8 +27,6 @@ public class ProductServicelmpl implements ProductService  {
 	
 	@Autowired
 	public stockService StoRepo;
-	
-	//private static final org.apache.logging.log4j.Logger l= LogManager.getLogger(ProductService.class);
 
 	
 	@Override
@@ -62,27 +62,27 @@ public class ProductServicelmpl implements ProductService  {
 	}
 	
 
-	/*@Override
-	public Product VerifierProductByDateExpiration(long ProductId, String addNom) {
-		DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	@Override
+	public Product verifierProductByDateExpiration(Product product) {
+		/*DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		System.out.println(format.format(date));
 		Product p = Prodrep.findById((long) ProductId).get();
 		if (p.getDateExp()==date ) {
 			System.out.println("produit a rejeté");
-		}//else if (date - p.getDateExp()=15 "jour") {
-		//publicite pub = pubrepo.findpub(addnom.get) 
-		//p.setpublicite(addnom)
-		//productrepo.save(a)
-		else {	p.getDateProd() ;}	
+		} else if (date - p.getDateExp()=15 "jour") {
+		publicite pub = pubrepo.findpub(addnom.get) 
+		p.setpublicite(addnom)
+		productrepo.save(a)
+		else {	
+			p.getDateProd() ;}	
+		}*/
 		
-	
 		System.out.println("publicité");
-			
-				return null;
+		return null;
 				
 
-		}*/
+		}
 
 	
 }

@@ -22,6 +22,6 @@ public interface ProductService {
 	
 
 
-	//Product VerifierProductByDateExpiration(long ProductId, String adNom);
+	Product verifierProductByDateExpiration(Product product);
 
 }

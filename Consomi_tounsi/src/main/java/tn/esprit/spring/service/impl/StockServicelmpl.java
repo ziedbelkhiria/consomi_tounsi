@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.impl;
 
 import java.util.List;
 //import java.util.Optional;
@@ -14,6 +14,7 @@ import tn.esprit.spring.entity.Product;
 import tn.esprit.spring.entity.Stocks;
 import tn.esprit.spring.repository.ProductRepository;
 import tn.esprit.spring.repository.StockRepository;
+import tn.esprit.spring.service.stockService;
 @Service
 public class StockServicelmpl implements stockService {
 	
