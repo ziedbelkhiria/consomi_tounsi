@@ -24,7 +24,7 @@ public class SousCategory implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "SousCategory_Id")
 	private Long id;
 	@Column(name = "SousCategory_nom")
