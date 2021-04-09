@@ -23,8 +23,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	 List<Product> findProductByProduct_nameAndProduct_type(@Param("q")String q, @Param("t")String t);
 	 
 	 
-	/* @Modifying
-	 @Query(value="INSERT INTO T_STOCKS (product_id, product_name, product_type) VALUES (:Pid, :Pn, Pt)", nativeQuery = true)
-	 Product addProduct(Product P);*/
+	
 	 
 }
