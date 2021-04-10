@@ -1,7 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,7 +27,7 @@ public class Product implements Serializable {
 	private String product_name;
 
 	@Column(name = "date_expiration")
-	private Date dateExp;
+	private Long dateExp;
 
 	private double product_price;
 
@@ -57,12 +57,11 @@ public class Product implements Serializable {
 		return code_a_barre;
 	}
 
-	public void setCode_a_barre(Long code_a_barre) {
-		this.code_a_barre = code_a_barre;
-	}
+	
 
-	public Product(Long code_a_barre) {
+	public Product(Long dateExp, Long code_a_barre) {
 		super();
+		this.dateExp = dateExp;
 		this.code_a_barre = code_a_barre;
 	}
 
@@ -77,7 +76,9 @@ public class Product implements Serializable {
 		this.product_price = product_price;
 	}
 
-	public Product(Date dateExp) {
+	
+
+	public Product(Long dateExp) {
 		super();
 		this.dateExp = dateExp;
 	}
@@ -122,11 +123,11 @@ public class Product implements Serializable {
 		this.rayon = rayon;
 	}
 
-	public Date getDateExp() {
+	public Long getDateExp() {
 		return dateExp;
 	}
 
-	public void setDateExp(Date dateExp) {
+	public void setDateExp(Long dateExp) {
 		this.dateExp = dateExp;
 	}
 
