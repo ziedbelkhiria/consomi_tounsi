@@ -3,6 +3,8 @@ package tn.esprit.spring.restController;
 import java.util.List;
 //import java.util.Optional;
 
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -85,6 +87,13 @@ public class ProductRestController {
 	public ResponseEntity<List<Product>> findProductByNameAndType(@RequestParam String q, @RequestParam String t) {
 		List<Product> list = productService.findProductByNameAndType(q, t);
 		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@PutMapping("/product/verif/{idProduct}")
+	public ResponseEntity<String> verifierProductByDateExpiration(@PathVariable("idProduct") Long id){
+		Product product = productService.retrieveProduct(id);
+		productService.verifierProductByDateExpiration(product);
+		return new ResponseEntity<>("Product verified.", HttpStatus.OK);
 	}
 
 }
