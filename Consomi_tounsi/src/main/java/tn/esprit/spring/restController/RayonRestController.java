@@ -72,6 +72,8 @@ public class RayonRestController {
 		Product product = productService.retrieveProduct(id);
 		
 		Rayon rayon = rayonservice.classifyProduct(product);
+		product.setRayon(rayon);
+		productService.addProduct(product);
 		return new ResponseEntity<>(rayon, HttpStatus.OK);
 	}
 	

@@ -43,11 +43,11 @@ public class ProductRestController {
 
 	}
 
-	@PostMapping("/add")
-	public ResponseEntity<Product> addProduit(@RequestBody Product product) {
+	@PostMapping("/add/{categoryId}")
+	public ResponseEntity<Product> addProduit(@RequestBody Product product, @PathVariable("categoryId") Long categoryId) {
 		String codeABarre = String.valueOf(product.getCode_a_barre());
 		if (codeABarre.startsWith("619")) {
-			Category category = categoryService.retrieveCategory(product.getCategory().getId());
+			Category category = categoryService.retrieveCategory(categoryId);
 			product.setCategory(category);
 			product = productService.addProduct(product);
 
