@@ -187,7 +187,7 @@ public class forumcontroller {
 			Newwform.setContent(forumdet.getContent());
 			if (forumdet.getImage() != null) {
 				Newwform.setPic(forumdet.getImage().getBytes());
-			}
+			}//
 
 			return new ResponseEntity<>(forumdrepo.save(Newwform), HttpStatus.OK);
 		} else {
